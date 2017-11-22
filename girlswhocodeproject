@@ -1,0 +1,112 @@
+# Viki Zygouras                                                          
+# Girls Who Code Application                                                     
+# Rock/Paper/Scissors Game    
+
+import random
+# Note: random.randint(a,b) returns a random integer 
+# in the range [a, b] (inclusive)
+
+# Returns True if gesture is one of the strings 'rock', 'paper', or 'scissors',
+# and False otherwise. 
+                                                    
+def isValidGesture(gesture):
+    
+    if gesture == "rock" or gesture == "paper" or gesture == "scissors":
+        return True
+    else: 
+        return False 
+         
+#print isValidGesture('rock')
+#print isValidGesture('spock')
+         
+# Randomly returns one of 'rock', 'paper', or 'scissors', 
+# with equal probability 
+                         
+def randomGesture():
+    '''Flesh out the body of this function'''
+    r = random.randint(1,3)
+    if r==1:
+        return "rock"
+    elif r==2:
+        return "scissors"
+    elif r==3:
+        return "paper"  
+#TESTING
+#print randomGesture()
+#print randomGesture()
+#print randomGesture()
+
+
+# Returns True if the first gesture beats the second gesture, 
+# i.e., if the first and second gesture are rock/scissors or  
+# scissors/paper or paper/rock, respectively. Returns False otherwise. 
+# The output is unspecified if one or both gestures is invalid.
+               
+def beats(gesture1, gesture2):
+    
+    if gesture1 == "rock" and gesture2 == "scissors":
+        return True
+    elif gesture1 == "scissors" and gesture2 == "paper":
+        return True
+    elif gesture1 == "paper" and gesture2 == "rock":
+        return True
+    else: 
+        return False 
+#TEST CASES 
+#print beats("paper","rock")
+#print beats("scissors","rock")
+#print beats("rock","rock")
+
+
+# Plays rock/paper/scissors game with your gesture vs. opponent's gesture.
+# If both gestures are valid, displays one of 'Tie game!', 'You win!',    
+def play(you, opponent):
+   
+    
+    if not(isValidGesture(you)):  
+        return "Your gesture " + "(" + you + ")" + " is invalid"
+        
+    elif not(isValidGesture(opponent)):
+        return "Opponent's gesture " + "(" + opponent + ")" + " is invalid" 
+        
+    elif you == opponent:
+        return "Game is a tie!" 
+        
+    elif beats(you,opponent):
+        return "You win!"
+        
+    elif beats(opponent,you):
+        return "Opponent wins!"
+   
+#TEST CASES     
+#print play('rock', 'paper')
+#print play('rock', 'scissors')
+#print play('rock', 'rock')
+#print play('rook', 'scissors')
+#print play('rock', 'sissors')
+#print play('spock', 'sissors')
+
+    
+
+# Plays rock/paper/scissors against a computer opponent that
+# randomly chooses a gesture. First displays the choice of the computer,
+# and then displays the result of the game. 
+                            
+def playComputer(you):
+    
+    #Computer randomly chooses a gesture 
+    
+    computer = randomGesture()
+    
+    # The computers choice is displayed 
+    
+    print "Computer chooses " + computer 
+    
+    return play(you,computer) 
+
+         
+print playComputer("paper")        
+print playComputer("paper") 
+print playComputer("paper")
+print playComputer("rock")
+print playComputer("scissors")    
